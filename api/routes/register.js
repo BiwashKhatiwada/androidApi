@@ -44,6 +44,7 @@ router.post('/getProfile', (req,res,next) => {
             result._fullName=doc[0]._fullName;
             result._userPhone=doc[0]._userPhone;
             result._userEmail=doc[0]._userEmail;
+            result._userImage=doc[0]._userImage;
          res.status(200).json(result);
         }else{
             res.status(404).json({
@@ -110,12 +111,13 @@ router.get('/:userId', (req,res,next) => {
 });
 
 router.post('/login', (req,res,next) => {
+    // console.log(req.body.email);
     Register.findOne({_userEmail: req.body.email}).exec()
     .then(doc => {
         if(doc) {
          bcrypt.compare(req.body.password, doc._userPassword, function(err, ress) {
              if(ress){
-                
+                // console.log(ress);
                  var result = doc.toJSON();
                  delete result._userPassword;
                  var token = jwt.sign({ email: result._userEmail,id:result._id}, 'secretkey');

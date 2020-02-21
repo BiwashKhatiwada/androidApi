@@ -26,8 +26,8 @@ router.post('/',(req,res,next) => {
         id: new mongoose.Types.ObjectId(),
         _subCatId: req.body.subCatId,
         _productName:req.body.productName,
-        _productPrice:req.body.productPrice
-        
+        _productPrice:req.body.productPrice,
+        _productImage:req.bidy.productImage
     });
     product.save().then(result => {
             res.status(201).json({
@@ -63,24 +63,6 @@ router.get('/:productId',(req,res,next) => {
 });
 
 
-router.post('/staffType/:staffType', checkAuth,(req,res,next) => {
-    req.params.staffType;
-  const staffType = req.params.staffType;
-  Product.find({_staffType:staffType}).exec()
-  .then(doc => {
-      if(doc) {
-       res.status(200).json(doc);
-      }else{
-          res.status(404).json({
-              status: 'No product found'
-          });
-      }
-      
-  }).catch(err => {
-      console.log(err);
-      res.status(500).json({error:err});
-  });
-});
 
 router.patch('/:staffId', checkAuth,(req,res,next) => {
     const id = req.params.staffId;

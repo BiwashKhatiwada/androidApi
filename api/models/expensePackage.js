@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 const expenseSchema = mongoose.Schema({
-    _packageName: {type:String},
+    _packageName: {type:String,required:true},
     _userId: {
         type: mongoose.Schema.Types.ObjectId,
         ref: "tbl_users",

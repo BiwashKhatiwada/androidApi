@@ -47,7 +47,7 @@ router.post('/',(req,res,next) => {
 router.post('/productReviews',(req,res,next) => {
        const id = req.body.productId;
        ProductReview.find({_productId:id})
-       .populate("_userId", "_fullName")
+       .populate("_userId")
        .select("_comment _rating")
        .sort({_id: -1})
        .exec()
@@ -60,6 +60,7 @@ router.post('/productReviews',(req,res,next) => {
                   dt._fullName=d['_userId']._fullName;
                   dt._rating=d._rating;
                   dt._comment=d._comment;
+                  dt._userImage=d['_userId']._userImage
                    result.push(dt);
                });              
             res.status(200).json(result);

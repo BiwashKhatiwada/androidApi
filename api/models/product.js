@@ -6,7 +6,8 @@ const productSchema = mongoose.Schema({
         required:true
       },
       _productName:String,
-      _productPrice:Number
+      _productPrice:Number,
+      _productImage:String
 
 });
 

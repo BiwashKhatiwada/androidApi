@@ -30,7 +30,7 @@ router.post('/',(req,res,next) => {
 
     });
     subcategory.save().then(result => {
-            console.log(result);
+            // console.log(result);
             res.status(201).json({
                 status:'Success',
                 createdProduct: result
@@ -97,7 +97,9 @@ router.delete('/:vehicleId', checkAuth,(req,res,next) => {
 
 router.post('/getSubCat', (req,res,next) => {
     const id = req.body._catId;
+    const longi=req.body._longi
     SubCategory.find({_catId:id})
+    // ,"_longitude": { $gt: 85.3414918, $lt: 85.3414920 }
     .exec()
     .then(doc => {
         if(doc) {

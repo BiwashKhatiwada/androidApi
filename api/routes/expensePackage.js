@@ -24,11 +24,10 @@ router.post('/',(req,res,next) => {
     const expense = new Expense(
         {
         _id: new mongoose.Types.ObjectId(),
-        _packageName: req.body.packageName,
-        _userId:req.body.userId 
+        _packageName: req.body._packageName,
+        _userId:req.body._userId 
     });
     expense.save().then(result => {
-            console.log(result);
             res.status(201).json({
                 status:'Success',
                 createdProduct: result
@@ -42,10 +41,12 @@ router.post('/',(req,res,next) => {
     });
 });
 
-router.get('/getPackage',(req,res,next) => {
-       Expense.find({_userId:req.body.productId}).exec()
+router.post('/getPackage',(req,res,next) => {
+   
+       Expense.find({_userId:req.body.userId}).exec()
        .then(doc => {
            if(doc) {
+               console.log(doc);
             res.status(200).json(doc);
            }else{
                res.status(404).json({
