@@ -111,13 +111,13 @@ router.get('/:userId', (req,res,next) => {
 });
 
 router.post('/login', (req,res,next) => {
-    // console.log(req.body.email);
+    console.log(req.body.email);
     Register.findOne({_userEmail: req.body.email}).exec()
     .then(doc => {
         if(doc) {
          bcrypt.compare(req.body.password, doc._userPassword, function(err, ress) {
              if(ress){
-                // console.log(ress);
+                console.log(req.body.password);
                  var result = doc.toJSON();
                  delete result._userPassword;
                  var token = jwt.sign({ email: result._userEmail,id:result._id}, 'secretkey');

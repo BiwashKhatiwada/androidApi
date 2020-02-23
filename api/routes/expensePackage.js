@@ -42,10 +42,12 @@ router.post('/',(req,res,next) => {
 });
 
 router.post('/getPackage',(req,res,next) => {
-       Expense.find({_userId:req.body.userId}).exec()
+       Expense.find({_userId:req.body.userId})
+       .sort({_id: -1})
+       .exec()
        .then(doc => {
            if(doc) {
-               console.log(doc);
+            //    console.log(doc);
             res.status(200).json(doc);
            }else{
                res.status(404).json({

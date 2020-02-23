@@ -11,6 +11,7 @@ const subCategoryRouters=require('./api/routes/subCategory');
 const productReview=require('./api/routes/productReview');
 const adminsRouters=require('./api/routes/register');
 const expenseRouters=require('./api/routes/expensePackage');
+const expenseListRouters=require('./api/routes/expenseList');
 
 
 app.use('/uploads',express.static(__dirname + '/uploads/images'));
@@ -23,7 +24,7 @@ app.use('/subCategory', subCategoryRouters);
 app.use('/productReview', productReview);
 app.use('/users', adminsRouters);
 app.use('/package', expenseRouters);
-
+app.use('/expenseList', expenseListRouters);
 
 app.use((req,res,next) => {
     const error = new Error('No results');

@@ -16,13 +16,16 @@ router.get('/', (req,res,next) => {
             });
 });
 
+
 router.post('/',(req,res,next) => {
+    console.log(req.body._price);
     const expense = new Expense(
         {
         _id: new mongoose.Types.ObjectId(),
-        _price: req.body.price,
-        _expenseName:req.body.expenseName,
-        _expenseId:req.body.expenseId
+        _expenseName:req.body._expenseName,
+        _price: req.body._price,
+        _expenseId:req.body._expenseId,
+        _date:req.body._date
     });
     expense.save().then(result => {
             console.log(result);
@@ -39,10 +42,12 @@ router.post('/',(req,res,next) => {
     });
 });
 
-router.get('/getExpense',(req,res,next) => {
+router.post('/getExpense',(req,res,next) => {
+    // console.log("asd..");
        Expense.find({_expenseId:req.body.expense}).exec()
        .then(doc => {
            if(doc) {
+               console.log(doc);
             res.status(200).json(doc);
            }else{
                res.status(404).json({

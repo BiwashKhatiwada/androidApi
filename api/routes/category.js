@@ -42,7 +42,7 @@ router.post('/', upload.single("photo"),(req,res,next) => {
 
     });
     category.save().then(result => {
-            console.log(result);
+            // console.log(result);
             res.status(201).json({
                 status:'Success',
                 createdProduct: result
