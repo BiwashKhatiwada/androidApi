@@ -43,11 +43,12 @@ router.post('/',(req,res,next) => {
 });
 
 router.post('/getExpense',(req,res,next) => {
-    // console.log("asd..");
-       Expense.find({_expenseId:req.body.expense}).exec()
+
+       Expense.find({_expenseId:req.body.expense})
+       .sort({_id:-1})
+       .exec()
        .then(doc => {
            if(doc) {
-               console.log(doc);
             res.status(200).json(doc);
            }else{
                res.status(404).json({
