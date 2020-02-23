@@ -42,7 +42,6 @@ router.post('/',(req,res,next) => {
 });
 
 router.post('/getPackage',(req,res,next) => {
-   
        Expense.find({_userId:req.body.userId}).exec()
        .then(doc => {
            if(doc) {

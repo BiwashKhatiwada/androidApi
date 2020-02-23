@@ -54,8 +54,7 @@ router.get('/getExpense',(req,res,next) => {
        });
 });
 
-
-router.delete('/:catId', checkAuth,(req,res,next) => {
+router.delete('/:catId',(req,res,next) => {
     const id = req.params.catId;
     Expense.remove({_id: id})
         .exec()
